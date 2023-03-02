@@ -48,7 +48,7 @@ public class Main {
                     System.out.println("Неверный ввод времени");
                     continue;
                 }
-                if (parts[0].matches("([0-1][0-9])|([2][0-3])") && parts[1].matches("([0-5][0-9])")) {
+                if (parts[0].matches("([0-1]?[0-9])|([2][0-3])") && parts[1].matches("([0-5]?[0-9])")) {
                     localDateTime = LocalDateTime.of(localDate, LocalTime.of(Integer.valueOf(parts[0]), Integer.valueOf(parts[1])));
                     isContinue=false;
                     break;
@@ -216,10 +216,15 @@ public class Main {
                     System.out.println("Неверный ввод данных");
                     continue;
                 }
-                if (parts[0].matches("([0]?[1-9])|([12][0-9])|([3][01])") && parts[1].matches("([0]?[1-9])|([1][12])") && parts[2].matches("[0-9]?[0-9]?[0-9]?[0-9]")) {
+                if (parts[0].matches("([0]?[1-9])|([12][0-9])|([3][01])") && parts[1].matches("([0]?[1-9])|([1][12])") && parts[2].matches("[0-9]?[0-9]?[0-9][0-9]")) {
                     day = Integer.valueOf(parts[0]);
                     month = Integer.valueOf(parts[1]);
-                    year = Integer.valueOf(parts[2]);
+
+                    if (parts[2].length() < 4) {
+                        year = 2000 + Integer.valueOf(parts[2]);
+                    } else {
+                        year = Integer.valueOf(parts[2]);
+                    }
 
                     localDate = LocalDate.of(year, month, 1);
                     int dayMax=localDate.getMonth().length(localDate.isLeapYear());

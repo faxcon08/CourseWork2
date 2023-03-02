@@ -18,8 +18,9 @@ abstract public class Task implements AppearsInAble{
         this.id=idGenerator++;
 
         this.dateTime=LocalDateTime.now();
-        if(this.isPastDate(this.dateTime,localDateTime.toLocalDate()))
+        if(this.isPastDate(this.dateTime,localDateTime.toLocalDate())) {
             throw new IncorrectArgumentException("Задана дата из прошлого");
+        }
         this.dateTime=localDateTime;
 
         this.setTitle(title);
