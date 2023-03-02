@@ -8,6 +8,11 @@ public class WeeklyTask extends Task{
     public WeeklyTask(String title, String description, Type type, LocalDateTime localDateTime) throws IncorrectArgumentException {
         super(title,description,type,localDateTime);
     }
+
+    public WeeklyTask(String title, String description, Type type) throws IncorrectArgumentException {
+        super(title, description, type);
+    }
+
     @Override
     public boolean appearsIn(LocalDate date) {
         if (this.isPastDate(this.getDateTime(),date)) {
@@ -18,6 +23,6 @@ public class WeeklyTask extends Task{
     }
     @Override
     public String toString() {
-        return super.toString()+" {Weekly}";
+        return super.toString()+" {Еженедельная}";
     }
 }

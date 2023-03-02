@@ -8,15 +8,19 @@ public class OneTimeTask extends Task{
         super(title, description, type,localDateTime);
     }
 
+    public OneTimeTask(String title, String description, Type type) throws IncorrectArgumentException {
+        super(title, description, type);
+    }
+
     @Override
     public boolean appearsIn(LocalDate date) {
         if(this.isPastDate(this.getDateTime(),date))
             return false;
         LocalDate taskDate = this.getDateTime().toLocalDate();
-        return taskDate.getYear()==date.getYear() && taskDate.getMonth()==date.getMonth() && taskDate.getDayOfMonth()==taskDate.getDayOfMonth();
+        return taskDate.getYear()==date.getYear() && taskDate.getMonth()==date.getMonth() && taskDate.getDayOfMonth()==date.getDayOfMonth();
     }
     @Override
     public String toString() {
-        return super.toString()+" {OneTime}";
+        return super.toString()+" {Одноразовая}";
     }
 }

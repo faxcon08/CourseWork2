@@ -8,6 +8,10 @@ public class YearlyTask extends Task{
         super(title, description, type,localDateTime);
     }
 
+    public YearlyTask(String title, String description, Type type) throws IncorrectArgumentException {
+        super(title, description, type);
+    }
+
     @Override
     public boolean appearsIn(LocalDate date) {
         if(this.isPastDate(this.getDateTime(),date))
@@ -17,6 +21,6 @@ public class YearlyTask extends Task{
     }
     @Override
     public String toString() {
-        return super.toString()+" {Yearly}";
+        return super.toString()+" {Ежегодная}";
     }
 }

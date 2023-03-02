@@ -18,6 +18,10 @@ public class TaskService {
             System.out.println("Задача для добавления NULL");
             return;
         }
+        if (taskMap.containsValue(task)) {
+            System.out.println("Попытка добавить такую же задачу");
+            return;
+        }
         taskMap.put(task.getId(),task);
     }
 
@@ -35,13 +39,28 @@ public class TaskService {
 
     public void printAllTasksByDate(LocalDate date) {
         Collection<Task> list = this.getAllByDate(date);
-        if(list==null) {
+        if(list.isEmpty()) {
             System.out.println("НЕТ задачь для дня: " + date);
             return;
         }
         System.out.println("Задачи для дня: "+date);
         for (Task task : list) {
-
+            System.out.println(task);
         }
+        System.out.println("              --------              ");
+    }
+
+    public void printAllTasks() {
+        List<Task> list = this.taskMap.values().stream().collect(Collectors.toList());
+        if (list.isEmpty()) {
+            System.out.println("НЕТ задачь");
+            return;
+        }
+        System.out.println("Список всех задачь:");
+        ListIterator<Task> listIterator=list.listIterator();
+        while (listIterator.hasNext()) {
+            System.out.println(listIterator.next());
+        }
+        System.out.println("              --------              ");
     }
 }

@@ -28,6 +28,16 @@ abstract public class Task implements AppearsInAble{
         this.type=type;
 
     }
+    public Task(String title,String description, Type type) throws IncorrectArgumentException {
+        this.id=idGenerator++;
+
+        this.dateTime=LocalDateTime.now();
+
+        this.setTitle(title);
+        this.setDescription(description);
+
+        this.type=type;
+    }
     /////// setters ///////
 
     public void setTitle(String title) throws IncorrectArgumentException {
@@ -84,12 +94,12 @@ abstract public class Task implements AppearsInAble{
 
     @Override
     public String toString() {
-        return "Task#"+this.id+" ["+this.getDateTime()+"] - '"+this.getTitle()+" <"+this.type+"> "+"' : "+this.getDescription();
+        return "Заметка#"+this.id+" ["+this.getDateTime().toLocalDate()+ " "+this.getDateTime().getHour()+":"+this.getDateTime().getMinute()+":"+this.getDateTime().getSecond()+"] - /"+this.getTitle()+"/ "+this.type+" : "+this.getDescription();
     }
 
     @Override
     public int hashCode() {
-        return this.description.hashCode()+this.id+this.title.hashCode()+this.dateTime.hashCode();
+        return this.description.hashCode()+this.title.hashCode()+this.dateTime.hashCode();
     }
 
     @Override
@@ -99,6 +109,6 @@ abstract public class Task implements AppearsInAble{
         if(obj==null || obj.getClass()!=this.getClass())
             return false;
         Task taskObj = (Task) obj;
-        return this.id==taskObj.id && this.description.equals(taskObj.description) && this.title.equals(taskObj.title) && this.type==taskObj.type && this.dateTime.equals(taskObj.dateTime);
+        return this.description.equals(taskObj.description) && this.title.equals(taskObj.title) && this.type==taskObj.type && this.dateTime.equals(taskObj.dateTime);
     }
 }
